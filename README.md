@@ -76,7 +76,9 @@ React + Vite, Electron, jsPDF, docx, Courier Prime font.
 
 ## 📄 License
 
-[MIT](LICENSE) — free to use, modify and share.
+[GNU GPLv3](LICENSE) — a copyleft license. You're free to use, study, modify and
+share Slate. The catch (on purpose): **any version you distribute must also be free
+and open source under the same license.** Slate stays free for everyone, forever.
 
 ## 🙌 Contributing — and the one rule
 

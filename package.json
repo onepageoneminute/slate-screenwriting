@@ -2,6 +2,7 @@
   "name": "guionista",
   "version": "1.0.4",
   "description": "Aplicación de escritura de guiones cinematográficos",
+  "license": "GPL-3.0-or-later",
   "main": "electron/main.js",
   "scripts": {
     "dev": "vite",
