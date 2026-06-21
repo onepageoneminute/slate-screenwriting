@@ -14,6 +14,7 @@ permissions:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
@@ -27,7 +28,7 @@ jobs:
           node-version: 20
 
       - name: Instalar dependencias
-        run: npm ci
+        run: npm install
 
       - name: Construir instalador
         run: npm run dist
