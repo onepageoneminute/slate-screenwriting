@@ -1,6 +1,6 @@
 {
   "name": "guionista",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Aplicación de escritura de guiones cinematográficos",
   "author": "Slate contributors",
   "license": "GPL-3.0-or-later",
@@ -11,7 +11,7 @@
     "electron": "electron .",
     "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
     "preview": "vite preview",
-    "dist": "vite build && electron-builder"
+    "dist": "vite build && electron-builder --publish never"
   },
   "build": {
     "appId": "com.slate.screenwriting",

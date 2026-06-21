@@ -52,6 +52,8 @@ jobs:
         env:
           # No firmar (no tenemos certificados de pago)
           CSC_IDENTITY_AUTO_DISCOVERY: false
+          # Evita el error EEXIST al copiar el icono en macOS
+          USE_HARD_LINKS: false
 
       - name: Subir instaladores como artefacto
         uses: actions/upload-artifact@v4
