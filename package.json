@@ -1,7 +1,8 @@
 {
   "name": "guionista",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Aplicación de escritura de guiones cinematográficos",
+  "author": "Slate contributors",
   "license": "GPL-3.0-or-later",
   "main": "electron/main.js",
   "scripts": {
@@ -39,7 +40,7 @@
       "target": [
         "dmg"
       ],
-      "icon": "build/icon.png",
+      "icon": "build/icon.icns",
       "category": "public.app-category.productivity"
     },
     "nsis": {
