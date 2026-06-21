@@ -1,0 +1,359 @@
+/*
+  Márgenes del estándar WGA en una página de 816px (8.5") con padding-left de 144px (1.5").
+  El área de escritura empieza en x=0 relativo al padding de la página.
+  Área total = 576px (6").
+
+  Referencia desde el borde izquierdo de la página (no del área):
+    Acción:       1.5" → empieza en x=0 del contenido
+    Personaje:    3.7" → 3.7 - 1.5 = 2.2" = 211px desde contenido
+    Diálogo:      2.5" a 6.5" → left=96px, right=96px dentro del área
+    Paréntesis:   3.1" a 5.9" → left=154px, right=154px
+    Transición:   alineado a la derecha
+*/
+
+.bloque {
+  position: relative;
+  /* interlineado doble entre bloques de acción/escena */
+  margin-bottom: 0;
+}
+
+/* Número de escena en el margen izquierdo */
+.escena-numero {
+  position: absolute;
+  left: -50px;
+  top: 2px;
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+  font-size: 10pt;
+  color: #aaa;
+  user-select: none;
+  pointer-events: none;
+  font-weight: normal;
+}
+
+/* ── NOTAS ─────────────────────────────────────────────── */
+/* Botón de nota en el margen derecho del folio */
+.bloque-nota-btn {
+  position: absolute;
+  right: -44px;
+  top: 0;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-muted, #aaa);
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.12s, background 0.12s, color 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bloque:hover .bloque-nota-btn { opacity: 0.55; }
+.bloque-nota-btn:hover { opacity: 1 !important; background: rgba(232,200,122,0.18); color: #b8860b; }
+
+/* Si el bloque tiene nota, el botón siempre visible y resaltado */
+.bloque-nota-btn.tiene-nota,
+.bloque-nota-btn.abierta {
+  opacity: 1;
+  color: #b8860b;
+}
+
+/* Marca a la izquierda del bloque con nota */
+.bloque.con-nota::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: #e8c87a;
+  border-radius: 2px;
+}
+
+/* Editor de nota emergente */
+.bloque-nota-editor {
+  position: absolute;
+  right: -300px;
+  top: 0;
+  width: 260px;
+  background: #fffdf5;
+  border: 1px solid #e0d5a8;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  padding: 8px;
+  z-index: 30;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.bloque-nota-texto {
+  width: 100%;
+  min-height: 70px;
+  border: none;
+  background: transparent;
+  resize: vertical;
+  outline: none;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #4a3f1a;
+  font-family: inherit;
+}
+
+.bloque-nota-texto::placeholder { color: #b0a888; }
+
+.bloque-nota-acciones {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 6px;
+  border-top: 1px solid #ece3c0;
+  padding-top: 6px;
+}
+
+.bloque-nota-acciones button {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 3px 8px;
+  border-radius: 4px;
+  color: #7a6c3a;
+}
+.bloque-nota-acciones button:hover { background: #f0e8c8; }
+.bloque-nota-borrar { color: #c0392b !important; }
+.bloque-nota-borrar:hover { background: rgba(192,57,43,0.1) !important; }
+
+/* Toggles de estilo opcionales */
+.subrayar .bloque-texto         { text-decoration: underline; }
+.sin-negrita .bloque-texto      { font-weight: normal !important; }
+.sin-cursiva .bloque-texto      { font-style: normal !important; }
+
+/* Badge flotante fuera del folio, se desvanece solo */
+.bloque-tipo-badge {
+  position: absolute;
+  left: -92px;
+  top: 0;
+  font-size: 9px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: #1a1a1a;
+  background: var(--accent);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  white-space: nowrap;
+  user-select: none;
+  padding: 2px 6px;
+  border-radius: 4px;
+  pointer-events: none;
+  animation: badge-aparecer 2.4s ease forwards;
+}
+
+@keyframes badge-aparecer {
+  0%   { opacity: 0;    transform: translateY(-3px); }
+  15%  { opacity: 0.85; transform: translateY(0);    }
+  65%  { opacity: 0.85; }
+  100% { opacity: 0;    }
+}
+
+/* Base de todos los textos */
+.bloque-texto {
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+  font-size: 12pt;
+  line-height: 1.0;   /* interlineado simple, como el PDF y el formato estándar */
+  color: #1a1a1a;
+  outline: none;
+  min-height: 1em;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.bloque-texto.mayusculas {
+  text-transform: uppercase;
+}
+
+.bloque-texto:empty::before {
+  content: attr(data-placeholder);
+  color: #ccc;
+  pointer-events: none;
+  text-transform: none;
+  font-style: normal;
+}
+
+/* ── ENCABEZADO DE ESCENA ──────────────────────────────────────────
+   Margen izquierdo: 0 (ya está en el padding de la página)
+   Todo en mayúsculas, negrita, espacio antes y después              */
+.bloque-encabezado {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+.bloque-encabezado .bloque-texto {
+  font-weight: bold;
+}
+
+/* ── ACCIÓN ────────────────────────────────────────────────────────
+   Ocupa todo el ancho del área de escritura (576px)                 */
+.bloque-accion {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+.bloque-accion .bloque-texto {
+  font-weight: normal;
+}
+
+/* ── PERSONAJE ─────────────────────────────────────────────────────
+   Empieza a 2.2" del margen izquierdo = 211px
+   margin-top equivale a línea en blanco antes del personaje         */
+.bloque-personaje {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+.bloque-personaje .bloque-texto {
+  margin-left: 211px;
+  font-weight: bold;
+}
+
+/* Personaje con (CONT'D): el nombre y el sufijo en la misma línea */
+.personaje-wrap {
+  display: flex;
+  align-items: baseline;
+  margin-left: 211px;
+}
+.personaje-wrap .bloque-texto {
+  margin-left: 0 !important;
+}
+.contd-sufijo {
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+  font-size: 12pt;
+  font-weight: bold;
+  color: #1a1a1a;
+  margin-left: 8px;
+  white-space: nowrap;
+  user-select: none;
+}
+
+/* ── DIÁLOGO ───────────────────────────────────────────────────────
+   2.5" a 6.5" → desde el margen de página:
+   left  = 2.5 - 1.5 = 1.0" = 96px
+   right = página_ancho - 6.5" - padding_right ajuste = ~96px         */
+.bloque-dialogo {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.bloque-dialogo .bloque-texto {
+  margin-left: 96px;
+  margin-right: 96px;
+}
+
+/* ── PARÉNTESIS ────────────────────────────────────────────────────*/
+.bloque-parentetico {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.parentetico-wrap {
+  display: flex;
+  align-items: baseline;
+  margin-left: 154px;
+  margin-right: 154px;
+}
+
+.paren {
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+  font-size: 12pt;
+  color: #444;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.bloque-parentetico .bloque-texto {
+  flex: 1;
+  margin-left: 0;
+  margin-right: 0;
+  font-style: italic;
+  color: #444;
+}
+
+/* ── TRANSICIÓN ────────────────────────────────────────────────────
+   Alineada al margen derecho, negrita                               */
+.bloque-transicion {
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+.bloque-transicion .bloque-texto {
+  text-align: right;
+  font-weight: bold;
+}
+
+/* ── AUTOCOMPLETADO ────────────────────────────────────────────────*/
+.sugerencias {
+  position: absolute;
+  top: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  z-index: 50;
+  min-width: 180px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+/* Personaje: aparece alineado con el margen de personaje */
+.sugerencias-personaje {
+  left: 211px;
+}
+
+/* Prefijo y momento: alineados al inicio del encabezado */
+.sugerencias-prefijo,
+.sugerencias-momento {
+  left: 0;
+}
+
+/* Transición: alineada a la derecha */
+.sugerencias-transicion {
+  right: 0;
+  left: auto;
+}
+
+.suger-header {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #999;
+  padding: 8px 14px 4px;
+  border-bottom: 1px solid #eee;
+}
+
+.sugerencia {
+  padding: 8px 14px;
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+  font-size: 12pt;
+  cursor: pointer;
+  color: #1a1a1a;
+  text-transform: uppercase;
+  transition: background 0.08s;
+}
+.sugerencia:hover, .sugerencia.sel {
+  background: #f5f0e0;
+}
+
+.sugerencia-destacada {
+  border-left: 2px solid #e8c87a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.suger-turno {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 9px;
+  text-transform: lowercase;
+  letter-spacing: 0.3px;
+  color: #b8960a;
+  font-style: italic;
+  margin-left: 8px;
+  flex-shrink: 0;
+}

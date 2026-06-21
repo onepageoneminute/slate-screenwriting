@@ -1,0 +1,232 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 48px;
+  padding: 0 16px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.topbar-izq, .topbar-der, .topbar-centro {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.topbar-centro {
+  position: relative;
+}
+
+.logo {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.5px;
+}
+
+.nombre-proyecto {
+  font-size: 14px;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.nombre-proyecto:hover {
+  background: var(--bg-hover);
+}
+
+.nombre-input {
+  background: var(--bg-hover);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--text-primary);
+  font-size: 14px;
+  padding: 4px 8px;
+  outline: none;
+  width: 200px;
+}
+
+.btn-icono {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 13px;
+  padding: 6px 8px;
+  border-radius: 4px;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-icono:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.btn-menu {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 16px;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.btn-menu:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 220px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  z-index: 200;
+  overflow: hidden;
+}
+
+.dropdown-header {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 10px 14px 6px;
+}
+
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  color: var(--text-primary);
+  transition: background 0.1s;
+}
+.dropdown-item:hover {
+  background: var(--bg-hover);
+}
+.dropdown-item.activo {
+  color: var(--accent);
+}
+.dropdown-item.nuevo {
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.dropdown-separador {
+  height: 1px;
+  background: var(--border);
+  margin: 4px 0;
+}
+
+.btn-borrar {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 12px;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+.btn-borrar:hover {
+  color: #e05555;
+  background: rgba(224,85,85,0.1);
+}
+
+.guardado-ind {
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.6;
+  margin-left: 8px;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+}
+.guardado-ind.guardando {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.vista-toggle {
+  display: flex;
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-right: 4px;
+}
+
+.vista-toggle button {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 12px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background 0.12s, color 0.12s;
+}
+
+.vista-toggle button:hover {
+  color: var(--text-primary);
+}
+
+.vista-toggle button.activo {
+  background: var(--accent);
+  color: #1a1a1a;
+  font-weight: 600;
+}
+
+.btn-portada {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: 6px;
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-portada:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.btn-ajustes {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  border-radius: 6px;
+  font-size: 15px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+}
+.btn-ajustes:hover { background: var(--bg-hover); color: var(--text-primary); }
+.btn-ajustes.activo { background: var(--bg-hover); border-color: var(--accent); color: var(--accent); }
+
+.btn-nuevo {
+  background: var(--accent);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-nuevo:hover {
+  background: var(--accent-hover);
+}

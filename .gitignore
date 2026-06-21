@@ -1,0 +1,16 @@
+# Dependencias
+node_modules/
+
+# Builds generados
+dist/
+instalador/
+
+# Logs y temporales
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/

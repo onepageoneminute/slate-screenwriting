@@ -1,0 +1,71 @@
+{
+  "name": "guionista",
+  "version": "1.0.4",
+  "description": "Aplicación de escritura de guiones cinematográficos",
+  "main": "electron/main.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "electron": "electron .",
+    "electron:dev": "concurrently \"vite\" \"wait-on http://localhost:5173 && electron .\"",
+    "preview": "vite preview",
+    "dist": "vite build && electron-builder"
+  },
+  "build": {
+    "appId": "com.slate.screenwriting",
+    "productName": "Slate",
+    "files": [
+      "dist/**/*",
+      "electron/**/*"
+    ],
+    "directories": {
+      "output": "instalador"
+    },
+    "fileAssociations": [
+      {
+        "ext": "slate",
+        "name": "Slate Screenplay",
+        "description": "Guion de Slate",
+        "icon": "build/icon.ico",
+        "role": "Editor"
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.ico"
+    },
+    "mac": {
+      "target": ["dmg"],
+      "icon": "build/icon.png",
+      "category": "public.app-category.productivity"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Slate",
+      "deleteAppDataOnUninstall": true,
+      "include": "build/installer.nsh"
+    }
+  },
+  "dependencies": {
+    "@fontsource/courier-prime": "^5.2.8",
+    "docx": "^9.7.1",
+    "file-saver": "^2.0.5",
+    "jspdf": "^4.2.1",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "concurrently": "^9.0.1",
+    "electron": "^32.0.0",
+    "electron-builder": "^25.1.8",
+    "png-to-ico": "^3.0.1",
+    "sharp": "^0.35.2",
+    "vite": "^5.4.0",
+    "wait-on": "^8.0.0"
+  }
+}

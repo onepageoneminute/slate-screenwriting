@@ -1,0 +1,74 @@
+.selidioma {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 24px;
+}
+
+.selidioma-caja {
+  max-width: 460px;
+  text-align: center;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 40px 36px;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.15);
+}
+
+.selidioma-logo {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.selidioma-caja h1 {
+  margin: 0 0 28px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.selidioma-opciones {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+.selidioma-opciones button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.12s, background 0.15s;
+}
+
+.selidioma-opciones button:hover {
+  border-color: var(--accent);
+  background: var(--bg-hover);
+  transform: translateY(-2px);
+}
+
+.selidioma-bandera {
+  font-size: 34px;
+  line-height: 1;
+}
+
+.selidioma-nota {
+  margin-top: 24px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}

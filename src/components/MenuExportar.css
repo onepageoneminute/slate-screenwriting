@@ -1,0 +1,96 @@
+.menu-exportar {
+  position: relative;
+}
+
+.btn-exportar {
+  background: var(--bg-hover);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  border-radius: 6px;
+  font-size: 13px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-exportar:hover {
+  background: var(--border);
+}
+
+.exportar-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+}
+
+.exportar-panel {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  width: 260px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+  z-index: 200;
+  overflow: hidden;
+  padding: 6px;
+}
+
+.exportar-titulo {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 8px 10px 4px;
+}
+
+.exportar-opcion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  background: none;
+  border: none;
+  border-radius: 7px;
+  padding: 10px 10px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.12s;
+  color: var(--text-primary);
+}
+.exportar-opcion:hover:not(:disabled) {
+  background: var(--bg-hover);
+}
+.exportar-opcion:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.exportar-icono {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.exportar-nombre {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.exportar-desc {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 1px;
+}
+
+.exportar-spin {
+  margin-left: auto;
+  font-size: 16px;
+  animation: girar 0.8s linear infinite;
+  color: var(--accent);
+}
+
+@keyframes girar {
+  from { transform: rotate(0deg) }
+  to   { transform: rotate(360deg) }
+}

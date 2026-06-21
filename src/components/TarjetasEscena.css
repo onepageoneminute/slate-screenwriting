@@ -1,0 +1,142 @@
+.tarjetas-vista {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--bg-primary);
+  padding: 32px 40px 80px;
+}
+
+.tarjetas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.tarjetas-vacio {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: 60px 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.tarjeta {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  min-height: 170px;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.12s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.tarjeta:hover {
+  border-color: var(--accent);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.14);
+  transform: translateY(-2px);
+}
+
+.tarjeta.es-over {
+  border-color: var(--accent);
+  border-style: dashed;
+}
+
+.tarjeta.es-drag,
+.tarjeta.arrastrando {
+  opacity: 0.4;
+}
+
+.tarjeta-cabecera {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 12px 14px;
+  background: var(--bg-primary);
+  border-bottom: 1px solid var(--border);
+}
+
+.tarjeta-num {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.tarjeta-titulo {
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.tarjeta-cuerpo {
+  flex: 1;
+  padding: 12px 14px;
+}
+
+.tarjeta-accion {
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tarjeta-accion.vacia {
+  color: var(--text-secondary);
+  font-style: italic;
+  opacity: 0.7;
+}
+
+.tarjeta-pie {
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.tarjeta-personajes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.tarjeta-personaje-tag {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border-radius: 3px;
+  padding: 2px 6px;
+  white-space: nowrap;
+}
+
+.tarjeta-personaje-tag.mas {
+  color: var(--text-secondary);
+  background: var(--bg-hover);
+}
+
+.tarjeta-dialogos {
+  font-size: 10px;
+  color: var(--text-secondary);
+}

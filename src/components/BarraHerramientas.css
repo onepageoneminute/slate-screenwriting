@@ -1,0 +1,74 @@
+.barra-herramientas {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 2px;
+  background: rgba(28, 28, 28, 0.96);
+  border: 1px solid #4a4a4a;
+  border-radius: 8px;
+  padding: 4px 6px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+  z-index: 300;
+  user-select: none;
+  backdrop-filter: blur(8px);
+}
+
+.barra-btn {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.1s, border-color 0.1s;
+  white-space: nowrap;
+}
+
+.barra-btn:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.barra-btn.activo {
+  background: rgba(232, 200, 122, 0.14);
+  border-color: var(--accent);
+}
+
+.barra-etiqueta {
+  font-size: 12px;
+  font-weight: 500;
+  color: #c8c8c8;
+  white-space: nowrap;
+}
+
+.barra-btn.activo .barra-etiqueta {
+  color: #ffffff;
+}
+
+.barra-atajo {
+  font-size: 10px;
+  font-weight: 600;
+  color: #888;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid #4a4a4a;
+  border-radius: 3px;
+  padding: 1px 5px;
+  font-family: var(--font-ui);
+  letter-spacing: 0.3px;
+}
+
+.barra-btn.activo .barra-atajo {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: rgba(232, 200, 122, 0.1);
+}
+
+.barra-separador {
+  width: 1px;
+  background: #4a4a4a;
+  margin: 3px 4px;
+  flex-shrink: 0;
+}

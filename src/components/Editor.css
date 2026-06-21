@@ -1,0 +1,94 @@
+/*
+  Simulación de página de guion en pantalla.
+  Referencia: estándar WGA (Writer's Guild of America)
+  Fuente: Courier 12pt, márgenes en pulgadas convertidas a px (96dpi)
+  Página US Letter: 8.5" x 11" = 816px x 1056px
+  Margen izquierdo: 1.5" = 144px
+  Margen derecho:   1"   = 96px
+  Margen superior:  1"   = 96px
+  Área de escritura: 6" = 576px
+*/
+
+.editor {
+  flex: 1;
+  overflow-y: auto;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 16px 80px;
+}
+
+.editor-estado {
+  position: fixed;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 4px 14px;
+  font-size: 11px;
+  color: var(--text-secondary);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 5;
+  display: flex;
+  gap: 10px;
+}
+
+.editor-estado-sep {
+  opacity: 0.4;
+}
+
+/* Documento: contenedor de las hojas y el contenido en flujo */
+.documento {
+  position: relative;
+  width: 794px;
+  flex-shrink: 0;
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+  font-size: 12pt;
+  line-height: 1.0;
+  color: #1a1a1a;
+}
+
+/* Cada hoja física A4 dibujada de fondo */
+.hoja {
+  position: absolute;
+  left: 0;
+  width: 794px;
+  height: 1123px;
+  background: #fafaf8;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.45);
+  z-index: 0;
+}
+
+.hoja-numero {
+  position: absolute;
+  top: 14mm;
+  right: 25.4mm;
+  font-family: 'Courier Prime', 'Courier New', Courier, monospace;
+  font-size: 12pt;
+  color: #555;
+  user-select: none;
+}
+
+/* Capa de contenido por encima de las hojas (márgenes A4 españoles).
+   display:flex evita el colapso de márgenes entre bloques, de modo que cada
+   espaciador de salto de página mide EXACTAMENTE lo necesario (sin desfase
+   acumulado entre páginas). */
+.contenido {
+  position: relative;
+  z-index: 1;
+  padding: 94px 94px 94px 132px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+/* Espaciador invisible que empuja el contenido a la hoja siguiente */
+.salto-espaciador {
+  width: 100%;
+  pointer-events: none;
+}

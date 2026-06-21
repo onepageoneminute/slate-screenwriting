@@ -1,0 +1,18 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="barClip"><rect x="104" y="146" width="304" height="74" rx="14"/></clipPath>
+  </defs>
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="#211e1a"/>
+  <rect x="104" y="146" width="304" height="74" rx="14" fill="#e8c87a"/>
+  <g clip-path="url(#barClip)">
+    <path d="M120 146 L152 146 L126 220 L94 220 Z" fill="#211e1a"/>
+    <path d="M188 146 L220 146 L194 220 L162 220 Z" fill="#211e1a"/>
+    <path d="M256 146 L288 146 L262 220 L230 220 Z" fill="#211e1a"/>
+    <path d="M324 146 L356 146 L330 220 L298 220 Z" fill="#211e1a"/>
+    <path d="M392 146 L424 146 L398 220 L366 220 Z" fill="#211e1a"/>
+  </g>
+  <rect x="104" y="232" width="304" height="158" rx="18" fill="#e8c87a"/>
+  <line x1="150" y1="285" x2="362" y2="285" stroke="#b1812b" stroke-width="14" stroke-linecap="round"/>
+  <line x1="150" y1="324" x2="300" y2="324" stroke="#b1812b" stroke-width="14" stroke-linecap="round"/>
+  <line x1="150" y1="363" x2="330" y2="363" stroke="#b1812b" stroke-width="14" stroke-linecap="round"/>
+</svg>
