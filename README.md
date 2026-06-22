@@ -1,5 +1,10 @@
 # 🎬 Slate
 
+[![Latest release](https://img.shields.io/github/v/release/onepageoneminute/slate-screenwriting?label=download)](https://github.com/onepageoneminute/slate-screenwriting/releases/latest)
+[![Total downloads](https://img.shields.io/github/downloads/onepageoneminute/slate-screenwriting/total?label=downloads)](https://github.com/onepageoneminute/slate-screenwriting/releases)
+[![Stars](https://img.shields.io/github/stars/onepageoneminute/slate-screenwriting?style=flat)](https://github.com/onepageoneminute/slate-screenwriting/stargazers)
+[![License: GPL v3](https://img.shields.io/badge/license-GPLv3-blue)](LICENSE)
+
 **A free, offline screenwriting app.** Write screenplays in proper industry format, with everything stored as plain files on your own computer — no accounts, no cloud, no subscriptions.
 
 Slate is fully bilingual (English / Spanish) and exports to industry-standard PDF (A4, Courier Prime, correct margins and pagination).
