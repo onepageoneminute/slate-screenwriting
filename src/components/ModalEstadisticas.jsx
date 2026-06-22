@@ -22,8 +22,10 @@ function calcularEstadisticas(bloques = []) {
   let dia = 0, noche = 0, otros = 0
   escenas.forEach(e => {
     const t = (e.texto || '').toUpperCase()
-    if (t.includes('NOCHE') || t.includes('MADRUGADA')) noche++
-    else if (t.includes('DÍA') || t.includes('DIA') || t.includes('AMANECER') || t.includes('TARDE')) dia++
+    if (t.includes('NOCHE') || t.includes('MADRUGADA') || t.includes('NIGHT')) noche++
+    else if (t.includes('DÍA') || t.includes('DIA') || t.includes('AMANECER') || t.includes('TARDE') ||
+             t.includes('DAY') || t.includes('MORNING') || t.includes('AFTERNOON') || t.includes('EVENING') ||
+             t.includes('DAWN') || t.includes('DUSK')) dia++
     else otros++
   })
 

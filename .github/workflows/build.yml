@@ -1,7 +1,7 @@
 name: Build installers
 
-# Se ejecuta cuando publicas una etiqueta de versión (p. ej. v1.0.4)
-# o manualmente desde la pestaña Actions de GitHub.
+# Runs when you publish a version tag (e.g. v1.0.8)
+# or manually from the Actions tab on GitHub.
 on:
   push:
     tags:
@@ -19,18 +19,18 @@ jobs:
         os: [windows-latest, macos-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Descargar el código
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Preparar Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      - name: Instalar dependencias
+      - name: Install dependencies
         run: npm install
 
-      - name: Generar icono .icns (solo macOS)
+      - name: Generate macOS icon (.icns)
         if: runner.os == 'macOS'
         run: |
           mkdir -p build/icon.iconset
@@ -47,26 +47,26 @@ jobs:
           iconutil -c icns build/icon.iconset -o build/icon.icns
           rm -rf build/icon.iconset
 
-      - name: Construir instalador
+      - name: Build installer
         run: npm run dist
         env:
-          # No firmar (no tenemos certificados de pago)
+          # Skip code signing (no paid certificates)
           CSC_IDENTITY_AUTO_DISCOVERY: false
-          # Evita el error EEXIST al copiar el icono en macOS
+          # Avoid the EEXIST error when copying the icon on macOS
           USE_HARD_LINKS: false
 
-      - name: Subir instaladores como artefacto
+      - name: Upload installers (artifact)
         uses: actions/upload-artifact@v4
         with:
           name: slate-${{ matrix.os }}
           path: |
-            instalador/*.exe
-            instalador/*.dmg
+            release/*.exe
+            release/*.dmg
 
-      - name: Adjuntar a la Release (solo en etiquetas)
+      - name: Attach to Release (on tags)
         if: startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            instalador/*.exe
-            instalador/*.dmg
+            release/*.exe
+            release/*.dmg

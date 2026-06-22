@@ -72,7 +72,7 @@ Requires [Node.js](https://nodejs.org) 18+.
 ```bash
 npm install
 npm run electron:dev   # run in development
-npm run dist           # build the installer for your OS (into ./instalador)
+npm run dist           # build the installer for your OS (into ./release)
 ```
 
 ## 🧱 Built with

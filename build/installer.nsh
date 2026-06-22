@@ -1,7 +1,7 @@
-; Personalización del instalador NSIS de Slate.
-; Al desinstalar, borra los datos del programa (carpeta y idioma recordados)
-; para que una reinstalación empiece de cero. NO toca los guiones del usuario,
-; que viven en su propia carpeta elegida.
+; NSIS installer customization for Slate.
+; On uninstall, remove the app's data (remembered folder and language) so a
+; reinstall starts fresh. This does NOT touch the user's scripts, which live
+; in the folder they chose.
 !macro customUnInstall
   RMDir /r "$APPDATA\Slate"
 !macroend
