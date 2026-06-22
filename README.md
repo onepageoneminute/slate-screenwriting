@@ -63,7 +63,14 @@ Go to the [**Releases**](../../releases) page and download the installer for you
 
 ## 🖼️ Screenshots
 
-_(coming soon)_
+<img width="1919" height="1031" alt="Captura de pantalla 2026-06-22 112442" src="https://github.com/user-attachments/assets/06c2a364-9b55-4e86-bba0-bf6fa4d7e8c3" />
+
+<img width="1919" height="1032" alt="Captura de pantalla 2026-06-22 112454" src="https://github.com/user-attachments/assets/f7a03e3a-c49f-42f0-9c6e-5786ffc0cddd" />
+
+<img width="1919" height="1027" alt="Captura de pantalla 2026-06-22 112507" src="https://github.com/user-attachments/assets/d5b67f69-a769-4af0-91c1-898531067a1d" />
+
+<img width="1919" height="1027" alt="Captura de pantalla 2026-06-22 112524" src="https://github.com/user-attachments/assets/176b0649-0b16-441f-9aba-7c6abf620d9a" />
+
 
 ## 🛠️ Build from source
 
