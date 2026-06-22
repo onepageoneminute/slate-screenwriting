@@ -75,6 +75,19 @@ npm run electron:dev   # run in development
 npm run dist           # build the installer for your OS (into ./release)
 ```
 
+## ⚠️ Known limitations (v1.0)
+
+This is an early version built by one person. Things that are good to know:
+
+- **Not code-signed** — Windows (SmartScreen) and macOS (Gatekeeper) will warn you on first launch. It's safe; see the install notes above.
+- **macOS build is Apple Silicon (arm64) only** for now — Intel Macs aren't covered yet.
+- **An extremely long paragraph (more than a full page with no line breaks) can overflow** instead of splitting across pages — just break it into smaller paragraphs. Rare with normal screenplay formatting. **If you'd like to fix it properly, you're free to — PRs welcome!**
+- **Very large scripts (300+ pages)** can feel less snappy while typing. Feature-length scripts (~120 pages) run smoothly.
+- **Interface is English & Spanish only** (the spell-checker supports many more languages).
+- **No cloud, no sync, no auto-update — by design.** Back up your scripts folder yourself, and grab new versions from the Releases page.
+
+Anyone is welcome to improve any of these — that's what open source is for. 🙌
+
 ## 🧱 Built with
 
 React + Vite, Electron, jsPDF, docx, Courier Prime font.
@@ -94,4 +107,4 @@ There's just **one rule**, and it's the whole point of this project:
 > **Slate must stay free and accessible to everyone — forever.**
 > Build on it, improve it, share it... but anything you make from it has to remain free and open too. No closing it off, no selling it as your own.
 
-That's not just a wish — it's enforced by the license below.
+That's not just a wish — it's enforced by the license above.
