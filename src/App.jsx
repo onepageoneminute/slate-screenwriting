@@ -44,7 +44,6 @@ export default function App() {
   const [statsAbierto, setStatsAbierto]   = useState(false)
   const [vista, setVista]                 = useState('guion')
   const [guardando, setGuardando]         = useState(false)
-  const [epoca, setEpoca]                 = useState(0) // se incrementa al deshacer/rehacer para remontar el editor
 
   const { estilos, toggle, setValor } = useEstilo()
   const { idioma, setIdioma } = useIdioma()
@@ -141,13 +140,15 @@ export default function App() {
   }
 
   function aplicarRestaurado(bloques) {
+    // Soltar el foco del bloque en edición: así su useEffect re-sincroniza el
+    // texto restaurado en el DOM (sin remontar el editor → el scroll no salta).
+    if (document.activeElement?.isContentEditable) document.activeElement.blur()
     setProyectos(prev => prev.map(p => {
       if (p.id !== proyectoActualId) return p
       const act = { ...p, bloques, modificado: new Date().toISOString() }
       programarGuardado(act)
       return act
     }))
-    setEpoca(e => e + 1) // remonta el editor para reflejar el contenido restaurado
   }
 
   function deshacer() {
@@ -432,7 +433,7 @@ export default function App() {
           />
         ) : (
           <Editor
-            key={`${proyectoActualId}-${epoca}`}
+            key={proyectoActualId}
             bloques={proyectoActual?.bloques || []}
             onChange={actualizarBloques}
             estilos={estilos}

@@ -54,11 +54,15 @@ export default function Bloque({
     if (refCallback) refCallback(divRef.current)
   })
 
+  // Sincroniza el texto del DOM con el estado cuando cambia desde fuera
+  // (deshacer/rehacer, etc.). Nunca pisa el bloque que se está editando,
+  // para no romper el cursor mientras se teclea.
   useEffect(() => {
-    if (divRef.current && divRef.current.textContent !== bloque.texto) {
-      divRef.current.textContent = bloque.texto
-    }
-  }, [bloque.id])
+    const el = divRef.current
+    if (!el) return
+    if (document.activeElement === el) return
+    if (el.textContent !== bloque.texto) el.textContent = bloque.texto
+  }, [bloque.id, bloque.texto])
 
   // Al enfocar encabezado o transición, mostrar opciones
   useEffect(() => {
