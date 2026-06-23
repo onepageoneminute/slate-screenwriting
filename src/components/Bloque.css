@@ -253,8 +253,7 @@
 }
 
 .parentetico-wrap {
-  display: flex;
-  align-items: baseline;
+  display: block;
   margin-left: 154px;
   margin-right: 154px;
 }
@@ -264,11 +263,11 @@
   font-size: 12pt;
   color: #444;
   user-select: none;
-  flex-shrink: 0;
+  display: inline;
 }
 
 .bloque-parentetico .bloque-texto {
-  flex: 1;
+  display: inline;
   margin-left: 0;
   margin-right: 0;
   font-style: italic;

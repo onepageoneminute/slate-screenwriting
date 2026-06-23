@@ -185,6 +185,19 @@ export default function Bloque({
     if (e.key === 'ArrowUp' && enInicio)   { e.preventDefault(); onArribaDesdeInicio(); return }
     if (e.key === 'ArrowDown' && enFin)    { e.preventDefault(); onAbajoDesdeEnd(); return }
 
+    // Auto-cierre de paréntesis
+    if (e.key === '(') {
+      e.preventDefault()
+      const el = divRef.current
+      const { inicio } = getCursorPos()
+      const texto = el.textContent || ''
+      const nuevoTexto = texto.slice(0, inicio) + '()' + texto.slice(inicio)
+      el.textContent = nuevoTexto
+      onCambio(nuevoTexto)
+      setCursor(el, inicio + 1)
+      return
+    }
+
     // Al escribir ' - ' en un encabezado, preparar sugerencias de momento
     if (bloque.tipo === 'encabezado' && e.key === '-') {
       setTimeout(() => {
