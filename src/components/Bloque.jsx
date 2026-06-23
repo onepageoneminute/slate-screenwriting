@@ -41,7 +41,7 @@ function calcularSugerenciasEncabezado(texto) {
 export default function Bloque({
   bloque, activo, refCallback, personajes, contd, estilos = {}, numeroEscena,
   onFocus, onCambio, onCambioYEnter, onEnter, onTab, onBorrarVacio,
-  onArribaDesdeInicio, onAbajoDesdeEnd, onCambioNota
+  onArribaDesdeInicio, onAbajoDesdeEnd, onCambioNota, onConvertirParentetico
 }) {
   const { t } = useIdioma()
   const [sugerencias, setSugerencias] = useState([])
@@ -185,12 +185,17 @@ export default function Bloque({
     if (e.key === 'ArrowUp' && enInicio)   { e.preventDefault(); onArribaDesdeInicio(); return }
     if (e.key === 'ArrowDown' && enFin)    { e.preventDefault(); onAbajoDesdeEnd(); return }
 
-    // Auto-cierre de paréntesis
     if (e.key === '(') {
       e.preventDefault()
       const el = divRef.current
-      const { inicio } = getCursorPos()
       const texto = el.textContent || ''
+      // Diálogo vacío → convertir a paréntesis (el bloque ya dibuja los ( )).
+      if (bloque.tipo === 'dialogo' && texto.trim() === '') {
+        onConvertirParentetico?.()
+        return
+      }
+      // Cualquier otro caso → auto-cierre () con el cursor en medio.
+      const { inicio } = getCursorPos()
       const nuevoTexto = texto.slice(0, inicio) + '()' + texto.slice(inicio)
       el.textContent = nuevoTexto
       onCambio(nuevoTexto)

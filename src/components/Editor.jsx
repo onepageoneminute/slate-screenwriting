@@ -48,6 +48,14 @@ export default function Editor({ bloques, onChange, estilos = {} }) {
     onChange(bloques.map(b => b.id === id ? { ...b, tipo } : b))
   }
 
+  // Convertir un diálogo vacío en paréntesis al escribir '('.
+  // El bloque paréntesis ya dibuja los ( ) él solo, así que el texto queda vacío
+  // y el cursor cae en el centro. Reenfocamos porque el div editable se reubica.
+  function convertirAParentetico(id) {
+    onChange(bloques.map(b => b.id === id ? { ...b, tipo: 'parentetico' } : b))
+    enfocar(id, 'start')
+  }
+
   function actualizarNota(id, nota) {
     onChange(bloques.map(b => b.id === id ? { ...b, nota } : b))
   }
@@ -363,6 +371,7 @@ export default function Editor({ bloques, onChange, estilos = {} }) {
                 onCambioYEnter={texto => actualizarTextoYEnter(bloque.id, texto)}
                 onEnter={() => onEnter(bloque.id)}
                 onTab={() => onTab(bloque.id)}
+                onConvertirParentetico={() => convertirAParentetico(bloque.id)}
                 onBorrarVacio={() => eliminarBloque(bloque.id)}
                 onArribaDesdeInicio={() => moverAAnterior(bloque.id)}
                 onAbajoDesdeEnd={() => moverASiguiente(bloque.id)}
