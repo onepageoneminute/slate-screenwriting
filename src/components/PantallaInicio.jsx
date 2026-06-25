@@ -239,7 +239,7 @@ export default function PantallaInicio({
               {t('importar')}
             </button>
             <button className="btn-nuevo-shotlist" onClick={() => onNuevoShotList(carpetaActiva === 'todos' || carpetaActiva === 'sin-carpeta' ? null : carpetaActiva)}>
-              Nueva Shot List
+              Nuevo Guión Técnico
             </button>
             <button className="btn-nuevo-proyecto" onClick={() => onNuevo(carpetaActiva === 'todos' || carpetaActiva === 'sin-carpeta' ? null : carpetaActiva)}>
               {t('nuevo_proyecto')}
@@ -261,7 +261,7 @@ export default function PantallaInicio({
                 {p.tipo === 'shotlist' ? (
                   <div className="card-shotlist-preview">
                     <span className="card-shotlist-icono">🎬</span>
-                    <span className="card-shotlist-label">Shot List</span>
+                    <span className="card-shotlist-label">Guión Técnico</span>
                     <span className="card-shotlist-count">{p.shotlist?.length || 0} planos</span>
                   </div>
                 ) : (

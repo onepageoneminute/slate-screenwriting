@@ -75,7 +75,7 @@ export default function ShotList({ planos, onChange }) {
   return (
     <div className="sl-wrap" ref={wrapRef}>
       <div className="sl-toolbar">
-        <span className="sl-titulo">Shot List</span>
+        <span className="sl-titulo">Guión Técnico</span>
         <div className="sl-toolbar-der">
           <span className="sl-count">{planos.length} plano{planos.length !== 1 ? 's' : ''}</span>
           <button className="sl-btn-add" onClick={() => onChange([...planos, nuevoPlano()])}>+ Añadir plano</button>

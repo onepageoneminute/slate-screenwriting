@@ -226,7 +226,7 @@ export default function App() {
   function nuevoShotList(carpetaId = null) {
     const p = {
       id: Date.now(),
-      nombre: 'Shot List sin título',
+      nombre: 'Guión Técnico sin título',
       carpetaId,
       tipo: 'shotlist',
       creado: new Date().toISOString(),
