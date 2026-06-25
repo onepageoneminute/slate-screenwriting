@@ -179,7 +179,13 @@ export default function Bloque({
       if (e.key === 'Escape')    { setSugerencias([]); setSugerTipo(null); return }
     }
 
-    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); onEnter(); return }
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault()
+      const { enInicio } = getCursorPos()
+      const tieneTexto = !!(divRef.current?.textContent || '').trim()
+      onEnter(enInicio && tieneTexto)
+      return
+    }
     if (e.key === 'Tab') { e.preventDefault(); onTab(); return }
 
     const { enInicio, enFin } = getCursorPos()

@@ -94,6 +94,15 @@ export default function Editor({ bloques, onChange, estilos = {} }) {
     insertarBloque(id, siguiente)
   }
 
+  function insertarBloqueAntes(id) {
+    const idx = bloques.findIndex(b => b.id === id)
+    const nuevo = { id: nuevoId(), tipo: 'accion', texto: '' }
+    const nuevos = [...bloques]
+    nuevos.splice(idx, 0, nuevo)
+    onChange(nuevos)
+    // El foco se queda en el bloque actual; el contenido baja.
+  }
+
   // Fija el texto de un bloque Y crea el siguiente en UNA sola actualización.
   // Evita que dos onChange seguidos (texto + insertar) se pisen por estado obsoleto.
   function actualizarTextoYEnter(id, texto) {
@@ -259,8 +268,12 @@ export default function Editor({ bloques, onChange, estilos = {} }) {
     for (let k = 0; k < nat.length; k++) {
       const n = nat[k]; if (!n) continue
       if ((n.top + n.h) - inicioPagina > USABLE && (n.top - inicioPagina) > 0) {
-        breaks[k] = true
-        inicioPagina = n.top
+        // Widow control: si el bloque anterior es un personaje, subir el salto
+        // para que nombre y diálogo caigan juntos en la página siguiente.
+        let bi = k
+        if (k > 0 && bloques[k - 1]?.tipo === 'personaje' && nat[k - 1]) bi = k - 1
+        breaks[bi] = true
+        inicioPagina = nat[bi].top
       }
     }
 
@@ -369,7 +382,7 @@ export default function Editor({ bloques, onChange, estilos = {} }) {
                 onCambio={texto => actualizarTexto(bloque.id, texto)}
                 onCambioNota={nota => actualizarNota(bloque.id, nota)}
                 onCambioYEnter={texto => actualizarTextoYEnter(bloque.id, texto)}
-                onEnter={() => onEnter(bloque.id)}
+                onEnter={alInicio => alInicio ? insertarBloqueAntes(bloque.id) : onEnter(bloque.id)}
                 onTab={() => onTab(bloque.id)}
                 onConvertirParentetico={() => convertirAParentetico(bloque.id)}
                 onBorrarVacio={() => eliminarBloque(bloque.id)}
