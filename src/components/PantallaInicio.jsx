@@ -43,7 +43,7 @@ function tiempoRelativo(iso, t, idioma) {
 
 export default function PantallaInicio({
   proyectos, carpetas, estilos, carpeta, esEscritorio,
-  onAbrir, onNuevo, onImportar, onSoltarArchivos, onCambiarCarpeta,
+  onAbrir, onNuevo, onNuevoShotList, onImportar, onSoltarArchivos, onCambiarCarpeta,
   onEliminar, onRenombrar, onMover, onDuplicar,
   onNuevaCarpeta, onRenombrarCarpeta, onEliminarCarpeta,
   onToggleTema, modoOscuro
@@ -238,6 +238,9 @@ export default function PantallaInicio({
             <button className="btn-importar-proy" onClick={() => onImportar(carpetaActiva === 'todos' || carpetaActiva === 'sin-carpeta' ? null : carpetaActiva)}>
               {t('importar')}
             </button>
+            <button className="btn-nuevo-shotlist" onClick={() => onNuevoShotList(carpetaActiva === 'todos' || carpetaActiva === 'sin-carpeta' ? null : carpetaActiva)}>
+              Nueva Shot List
+            </button>
             <button className="btn-nuevo-proyecto" onClick={() => onNuevo(carpetaActiva === 'todos' || carpetaActiva === 'sin-carpeta' ? null : carpetaActiva)}>
               {t('nuevo_proyecto')}
             </button>
@@ -255,10 +258,20 @@ export default function PantallaInicio({
               onClick={() => { if (!menuProyecto) onAbrir(p.id) }}
             >
               <div className="card-preview">
-                <div className="card-linea bold">{p.nombre.toUpperCase()}</div>
-                {p.bloques?.slice(0, 3).map((b, i) => (
-                  <div key={i} className={`card-linea tipo-${b.tipo}`}>{b.texto}</div>
-                ))}
+                {p.tipo === 'shotlist' ? (
+                  <div className="card-shotlist-preview">
+                    <span className="card-shotlist-icono">🎬</span>
+                    <span className="card-shotlist-label">Shot List</span>
+                    <span className="card-shotlist-count">{p.shotlist?.length || 0} planos</span>
+                  </div>
+                ) : (
+                  <>
+                    <div className="card-linea bold">{p.nombre.toUpperCase()}</div>
+                    {p.bloques?.slice(0, 3).map((b, i) => (
+                      <div key={i} className={`card-linea tipo-${b.tipo}`}>{b.texto}</div>
+                    ))}
+                  </>
+                )}
               </div>
 
               <div className="card-info">
@@ -281,7 +294,10 @@ export default function PantallaInicio({
                   )}
                 </div>
                 <div className="card-meta">
-                  <span>{p.bloques?.filter(b => b.tipo === 'encabezado').length} {t('escenas')}</span>
+                  {p.tipo === 'shotlist'
+                    ? <span>{p.shotlist?.length || 0} planos</span>
+                    : <span>{p.bloques?.filter(b => b.tipo === 'encabezado').length} {t('escenas')}</span>
+                  }
                   <span>·</span>
                   <span>{tiempoRelativo(p.modificado || p.creado, t, idioma)}</span>
                 </div>

@@ -88,6 +88,10 @@ export default function Topbar({ proyecto, estilos, guardando, onVolver, onNuevo
             className={vista === 'tarjetas' ? 'activo' : ''}
             onClick={() => onCambiarVista('tarjetas')}
           >{t('vista_tarjetas')}</button>
+          <button
+            className={vista === 'shotlist' ? 'activo' : ''}
+            onClick={() => onCambiarVista('shotlist')}
+          >Shot List</button>
         </div>
         <button className="btn-portada" onClick={onEditarPortada} title={t('portada')}>{t('portada')}</button>
         <button className="btn-portada" onClick={onEstadisticas} title={t('estadisticas')}>{t('estadisticas')}</button>

@@ -1,0 +1,233 @@
+.sl-wrap {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background: var(--bg-primary, #fff);
+}
+
+/* ── Toolbar ── */
+.sl-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--border, #ddd);
+  flex-shrink: 0;
+  gap: 12px;
+}
+
+.sl-titulo {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary, #111);
+  letter-spacing: 0.5px;
+}
+
+.sl-toolbar-der {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sl-count {
+  font-size: 12px;
+  color: var(--text-secondary, #888);
+}
+
+.sl-btn-add {
+  font-size: 13px;
+  padding: 6px 14px;
+  border: 1px solid var(--border, #ddd);
+  border-radius: 6px;
+  background: var(--bg-secondary, #f7f7f7);
+  color: var(--text-primary, #111);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sl-btn-add:hover {
+  background: var(--accent, #e8c87a);
+  border-color: var(--accent, #e8c87a);
+}
+
+/* ── Scroll wrapper ── */
+.sl-scroll {
+  flex: 1;
+  overflow: auto;
+  padding: 16px 20px 40px;
+}
+
+/* ── Table ── */
+.sl-tabla {
+  border-collapse: collapse;
+  font-size: 12px;
+  table-layout: fixed;
+  white-space: nowrap;
+  min-width: max-content;
+}
+
+/* ── Group header row ── */
+.sl-th-num {
+  width: 32px;
+  min-width: 32px;
+}
+
+.sl-grupo {
+  text-align: center;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  padding: 3px 6px;
+  border: 0.5px solid rgba(0, 0, 0, 0.14);
+}
+
+.sl-g-id        { background: #D3D1C7; color: #2C2C2A; }
+.sl-g-camara    { background: #B5D4F4; color: #0C447C; }
+.sl-g-contenido { background: #FAC775; color: #633806; }
+.sl-g-produccion{ background: #C0DD97; color: #27500A; }
+
+/* ── Column header row ── */
+.sl-col-head {
+  background: var(--bg-secondary, #f5f5f5);
+  color: var(--text-secondary, #666);
+  font-size: 10px;
+  font-weight: 700;
+  text-align: center;
+  padding: 5px 4px;
+  border: 0.5px solid var(--border, #ddd);
+  border-top: 2px solid var(--text-primary, #222);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  user-select: none;
+}
+
+/* Group separator */
+.sl-sep {
+  border-right: 2px solid var(--text-primary, #222) !important;
+}
+
+/* ── Body ── */
+.sl-row-num {
+  text-align: center;
+  color: var(--text-secondary, #999);
+  font-size: 11px;
+  padding: 0 4px;
+  border: 0.5px solid var(--border, #ddd);
+  background: var(--bg-secondary, #f5f5f5);
+  user-select: none;
+}
+
+.sl-cell {
+  border: 0.5px solid var(--border, #ddd);
+  padding: 0;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.sl-stripe td {
+  background: var(--bg-secondary, #f9f9f9);
+}
+
+/* ── Text input ── */
+.sl-input {
+  display: block;
+  width: 100%;
+  height: 30px;
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: 12px;
+  color: var(--text-primary, #111);
+  padding: 0 6px;
+  outline: none;
+}
+.sl-input:focus {
+  background: color-mix(in srgb, var(--accent, #e8c87a) 12%, transparent);
+}
+
+/* ── Dropdown cell ── */
+.sl-cell-dd {
+  cursor: pointer;
+  padding: 0 6px;
+  user-select: none;
+  position: relative;
+}
+.sl-cell-dd:hover {
+  background: color-mix(in srgb, var(--accent, #e8c87a) 10%, transparent) !important;
+}
+
+.sl-dd-val {
+  font-size: 12px;
+  color: var(--text-primary, #111);
+}
+
+.sl-dd-arrow {
+  font-size: 9px;
+  color: var(--text-secondary, #aaa);
+  margin-left: 4px;
+}
+
+/* ── Estado colores ── */
+.sl-estado-pendiente .sl-dd-val  { color: #8A5200; font-weight: 600; }
+.sl-estado-rodado .sl-dd-val     { color: #1A6E52; font-weight: 600; }
+.sl-estado-descartado .sl-dd-val { color: #888; text-decoration: line-through; }
+
+/* ── Delete button ── */
+.sl-cell-del {
+  border: 0.5px solid var(--border, #ddd);
+  width: 28px;
+  min-width: 28px;
+  text-align: center;
+  padding: 0;
+}
+
+.sl-btn-del {
+  background: none;
+  border: none;
+  color: var(--text-secondary, #aaa);
+  cursor: pointer;
+  font-size: 10px;
+  padding: 4px 6px;
+  opacity: 0;
+  transition: opacity 0.1s, color 0.1s;
+}
+tr:hover .sl-btn-del { opacity: 0.5; }
+.sl-btn-del:hover    { opacity: 1 !important; color: #e74c3c; }
+
+/* ── Empty state ── */
+.sl-vacio {
+  text-align: center;
+  padding: 48px 20px;
+  color: var(--text-secondary, #aaa);
+  font-size: 14px;
+}
+
+/* ── Dropdown overlay ── */
+.sl-dropdown {
+  position: absolute;
+  background: var(--bg-primary, #fff);
+  border: 1px solid var(--border, #ddd);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 200;
+  overflow: hidden;
+  padding: 4px 0;
+}
+
+.sl-dd-item {
+  padding: 7px 14px;
+  font-size: 12px;
+  color: var(--text-primary, #111);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.sl-dd-item:hover {
+  background: var(--bg-secondary, #f5f5f5);
+}
+.sl-dd-sel {
+  background: color-mix(in srgb, var(--accent, #e8c87a) 20%, transparent);
+  font-weight: 600;
+}

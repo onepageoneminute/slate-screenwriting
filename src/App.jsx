@@ -9,6 +9,7 @@ import BuscadorGuion from './components/BuscadorGuion.jsx'
 import ModalEstadisticas from './components/ModalEstadisticas.jsx'
 import TarjetasEscena from './components/TarjetasEscena.jsx'
 import BienvenidaCarpeta from './components/BienvenidaCarpeta.jsx'
+import ShotList, { nuevoPlano } from './components/ShotList.jsx'
 import { useEstilo } from './hooks/useEstilo.js'
 import { useIdioma } from './i18n.js'
 import * as almacen from './almacen.js'
@@ -124,7 +125,12 @@ export default function App() {
     clearTimeout(commitTimer.current)
   }, [proyectoActualId])
 
-  function abrirProyecto(id) { setProyectoActualId(id); setPanelEstilo(false) }
+  function abrirProyecto(id) {
+    const p = proyectos.find(x => x.id === id)
+    setProyectoActualId(id)
+    setPanelEstilo(false)
+    setVista(p?.tipo === 'shotlist' ? 'shotlist' : 'guion')
+  }
   function volverInicio() { setProyectoActualId(null); setPanelEstilo(false); setModalPortada(false) }
 
   // Consolida un punto de historial (agrupa ráfagas de escritura)
@@ -188,6 +194,15 @@ export default function App() {
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
 
+  function actualizarShotlist(planos) {
+    setProyectos(prev => prev.map(p => {
+      if (p.id !== proyectoActualId) return p
+      const actualizado = { ...p, shotlist: planos, modificado: new Date().toISOString() }
+      programarGuardado(actualizado)
+      return actualizado
+    }))
+  }
+
   // Edición de bloques: estado inmediato + guardado diferido + historial diferido
   function actualizarBloques(bloques) {
     setProyectos(prev => prev.map(p => {
@@ -205,6 +220,24 @@ export default function App() {
     setProyectos(prev => [...prev, p])
     guardar(p)
     setProyectoActualId(p.id)
+    setVista('guion')
+  }
+
+  function nuevoShotList(carpetaId = null) {
+    const p = {
+      id: Date.now(),
+      nombre: 'Shot List sin título',
+      carpetaId,
+      tipo: 'shotlist',
+      creado: new Date().toISOString(),
+      modificado: new Date().toISOString(),
+      bloques: [],
+      shotlist: [nuevoPlano()],
+    }
+    setProyectos(prev => [...prev, p])
+    guardar(p)
+    setProyectoActualId(p.id)
+    setVista('shotlist')
   }
 
   function renombrarProyecto(id, nombre) {
@@ -340,6 +373,7 @@ export default function App() {
         esEscritorio={almacen.esEscritorio}
         onAbrir={abrirProyecto}
         onNuevo={nuevoProyecto}
+        onNuevoShotList={nuevoShotList}
         onImportar={importar}
         onSoltarArchivos={soltarArchivos}
         onCambiarCarpeta={elegirCarpeta}
@@ -407,7 +441,7 @@ export default function App() {
         />
       )}
       <div className="app-cuerpo">
-        {panelAbierto && (
+        {panelAbierto && vista !== 'shotlist' && (
           <SidePanel
             bloques={proyectoActual?.bloques || []}
             estilos={estilos}
@@ -420,7 +454,12 @@ export default function App() {
             onReordenar={actualizarBloques}
           />
         )}
-        {vista === 'tarjetas' ? (
+        {vista === 'shotlist' ? (
+          <ShotList
+            planos={proyectoActual?.shotlist || []}
+            onChange={actualizarShotlist}
+          />
+        ) : vista === 'tarjetas' ? (
           <TarjetasEscena
             bloques={proyectoActual?.bloques || []}
             onChange={actualizarBloques}
